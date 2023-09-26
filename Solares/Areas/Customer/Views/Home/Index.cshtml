@@ -1,0 +1,112 @@
+﻿@model ViewHomes
+@{
+    ViewData["Title"] = "Ingenieurbüro Schmidt & Aljarad";
+}
+<header id="header" class="header d-flex align-items-center">
+    <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
+        <a href="/" class="logo d-flex align-items-center">
+            <!-- Uncomment the line below if you also wish to use an image logo -->
+            <!-- <img src="assets/img/logo.png" alt=""> -->
+            <h1>Ingenieurbüro Schmidt & Aljarad<span>.</span></h1>
+        </a>
+        <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
+        <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
+        <nav id="navbar" class="navbar">
+            <ul>
+                <li><a href="/" class="active">Home</a></li>
+                 @if (Model.localization.active == true)
+                            {
+                    <li><a href="#">über uns</a></li>
+                    <li><a href="#">Leistung</a></li>
+                    <li><a href="#">Kontakt</a></li>
+                }
+                else
+                {
+                <li><a href="#">About Us</a></li>
+                <li><a href="#">Service</a></li>
+                    <li><a href="#">Contact</a></li>
+                }
+                <li class="dropdown">
+                    <a href="#">
+                        <span>Language</span> <i class="bi bi-chevron-down dropdown-indicator"></i>
+                    </a>
+                    <ul id="menufilter">
+                        <form asp-action="Edit" asp-area="Admin" asp-controller="Localizations">
+                            <input asp-for="localization.active" type="checkbox"  class="d-none" />
+                            <input asp-for="localization.Id" type="hidden"  />
+                            @if (Model.localization.active == true)
+                            {
+                            <li style="cursor:pointer;">
+                                <input type="submit" value="en" class="w-75 btn btn-sm" /><img src="/img/Custom-Icon-Design-All-Country-Flag-United-States-Flag.256.png" width="20" />
+                                </li>
+                            }
+                            else
+                            {
+                                  
+                        <li>
+                            <input type="submit" value="de" class="w-75 btn btn-sm" /><img src="/img/Custom-Icon-Design-All-Country-Flag-Germany-Flag.256.png   " width="20" />
+                        </li>
+                            }
+                        </form>
+
+                    </ul>
+                </li>
+            </ul>
+        </nav><!-- .navbar -->
+
+    </div>
+</header>
+
+
+ <!-- ======= Hero Section ======= -->
+  <section id="hero" class="hero">
+   
+    <div class="info d-flex align-items-center">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-6 text-center">
+              @if(Model.localization.active==true)
+                {
+                        <h2 data-aos="fade-down">@Model.Homes.ToList()[0].TitleDe</h2>
+                        <p>@Model.Homes.ToList()[0].DescriptionDe </p>
+                }else
+                    {
+
+                        <h2 data-aos="fade-down">@Model.Homes.ToList()[0].Title</h2>
+                        <p>@Model.Homes.ToList()[0].Description </p>
+                    }
+            <a data-aos="fade-up" data-aos-delay="200" href="#get-started" class="btn-get-started">Get Started</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div id="hero-carousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="5000">
+        @for(int i=0; i<Model.Homes.Count();i++)
+        {
+            if (i == 0)
+            {
+                <div class="carousel-item active" style="background-image:url(@Model.Homes.ToList()[i].Image)"></div>
+            }
+
+            else
+            {
+                <div class="carousel-item" style="background-image:url(@Model.Homes.ToList()[i].Image)"></div>
+            }
+        }
+        
+      <a class="carousel-control-prev" href="#hero-carousel" role="button" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon bi bi-chevron-left" aria-hidden="true"></span>
+      </a>
+
+      <a class="carousel-control-next" href="#hero-carousel" role="button" data-bs-slide="next">
+        <span class="carousel-control-next-icon bi bi-chevron-right" aria-hidden="true"></span>
+      </a>
+
+    </div>
+    
+  </section><!-- End Hero Section -->
+  <partial name="View" />
+  <partial name="_WhyUs" />
+<partial name="OurService" />
+  <partial name="_Contact" />

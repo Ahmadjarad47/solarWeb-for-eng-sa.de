@@ -1,0 +1,123 @@
+﻿@using Solares.Models.Views;
+@model ViewHomes
+<section id="services" class="services section-bg">
+    <div class="container" data-aos="fade-up">
+      
+        <div class="section-header">
+         @foreach (var item in Model.serviceTitles)
+            {
+                @if (Model.localization.active == true)
+                {
+                    <h2>@item.TitleDe</h2>
+                    <p>
+                        @item.DescriptionDe
+                    </p>
+                }
+                else
+                {
+                    <h2>@item.Title</h2>
+                    <p>
+                        @item.Description
+                    </p>
+                }
+            }
+        </div>
+        
+        <div class="row gy-4">
+            @foreach (var item in Model.services)
+            {
+
+                var id = item.Id * 100;
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="@id">
+                <div class="service-item  position-relative">
+                    <div class="icon">
+                        <i class="fa-solid @item.TypeIcon"></i>
+                    </div>
+                        @if (Model.localization.active == true)
+                        {
+                            <h3>@item.TitleDe</h3>
+                            <p>
+                                @{
+                                    string s = "";
+                                    if (item.DescriptionDe.Length > 30)
+                                    {
+                                        s = item.DescriptionDe.Substring(0, 30);
+                                        s += "...";
+
+                                    }
+                                    else
+                                    {
+                                        s = item.DescriptionDe;
+                                    }
+                                }
+                                @s
+                            </p>
+                        }
+                        else
+                        {
+                                <h3>@item.Title</h3>
+                                <p>
+                                    @{
+                                        string s = "";
+                                        if (item.Description.Length > 30)
+                                        {
+                                            s = item.Description.Substring(0, 30);
+                                            s += "...";
+
+                                        }
+                                        else
+                                        {
+                                            s = item.Description;
+                                        }
+                                    }
+                                    @s
+                                </p>
+                            
+                        }
+
+                        <a data-bs-toggle="modal" data-bs-target="#@item.IdModal" style="cursor:pointer;" class="readmore stretched-link">
+                        more <i class="bi bi-arrow-right"></i>
+                    </a>
+                </div>
+          
+            </div><!-- End Service Item -->
+        }
+          
+        </div>
+    </div>
+</section>
+@foreach (var item in Model.services)
+{
+<div class="modal fade" id="@item.IdModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+                @if (Model.localization.active != true)
+                {
+            <div class="modal-header">
+                
+                <h5 class="modal-title" id="staticBackdropLabel">@item.Title</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+               @item.Description
+            </div>
+                }else
+                {
+                    <div class="modal-header">
+
+                        <h5 class="modal-title" id="staticBackdropLabel">@item.TitleDe</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p>@item.DescriptionDe</p>
+                    </div>
+
+                }
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+
+            </div>
+        </div>
+    </div>
+</div>
+}

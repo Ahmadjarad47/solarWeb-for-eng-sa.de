@@ -1,0 +1,60 @@
+﻿@using Solares.Models.Views;
+@model ViewHomes
+<section id="alt-services" class="alt-services">
+    <div class="container aos-init aos-animate" data-aos="fade-up">
+
+        <div class="row justify-content-around gy-4">
+            @foreach (var item in Model.OurServiceTitles)
+            {
+            <div class="col-lg-6 img-bg aos-init aos-animate" style="background-image: url(@item.Image);" data-aos="zoom-in" data-aos-delay="100"></div>
+            }
+            <div class="col-lg-5 d-flex flex-column justify-content-center">
+                @foreach (var item in Model.OurServiceTitles)
+                {
+                    @if (Model.localization.active == true)
+                    {
+                        <h3>@item.TitleDe</h3>
+                        <p>
+                            @item.DescriptionDe
+                        </p>
+                    }
+                    else
+                    {
+                        <h3>@item.Title</h3>
+                        <p>
+                            @item.Description
+                        </p>
+                    }
+                }
+            
+                @foreach (var item in Model.OurServiceItems)
+                {
+                    int i = 100 * item.Id;
+                    <div class="icon-box d-flex position-relative" data-aos="fade-up" data-aos-delay="@i">
+                        <i class="@item.TypeIcon flex-shrink-0"></i>
+                        <div>
+                            @if (Model.localization.active == true)
+                            {
+                                <h4><a style="cursor:pointer;" class="stretched-link">@item.TitleDe</a></h4>
+                                <p>
+                                    @item.DescriptionDe
+                                </p>
+                            }
+                            else
+                            {
+                                <h4><a style="cursor:pointer;" class="stretched-link">@item.Title</a></h4>
+                                <p>
+                                    @item.Description
+                                </p>
+                            }
+                        </div>
+                    </div>
+
+                    <!-- End Icon Box -->
+                }
+            
+            </div>
+        </div>
+
+    </div>
+</section>

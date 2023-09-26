@@ -1,0 +1,64 @@
+﻿@using Solares.Models.Views;
+@model IEnumerable<Email>
+
+
+<partial name="/Views/Shared/Admin.cshtml" />
+
+
+<h2 class="justify-content-center align-content-center d-flex">Send Email</h2>
+<table class="table table-dark table-hover">
+    <thead>
+        <tr>
+            <th>
+                Name
+            </th>
+            <th>
+              Emails
+            </th>
+            <th>
+               Subject
+            </th>
+            <th>
+                Body
+            </th>
+            <th>
+                Time Send
+            </th>
+           <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.subject)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.body)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TimeSendEmail)
+                </td>
+                <td>
+                   
+                        <a asp-action="Delete" asp-route-Id="@item.Id" class="btn btn-danger">Delete</a>
+                </td>
+                <form method="post" asp-action="Export" >
+                    <input type="submit" class="btn btn-primary" id="btnSubmit" value="Export" />
+                </form>
+            </tr>
+        }
+    </tbody>
+</table>
+ </div>
+        </main>
+
+    </div>
+</div>

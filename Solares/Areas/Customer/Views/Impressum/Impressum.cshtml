@@ -1,0 +1,92 @@
+﻿@model ViewImpressum
+@{
+    ViewData["Title"] = "Ingenieurbüro Schmidt & Aljarad";
+}
+
+<header id="header" class="header d-flex align-items-center bg-dark">
+    <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
+        <a href="/" class="logo d-flex align-items-center">
+            <!-- Uncomment the line below if you also wish to use an image logo -->
+            <!-- <img src="assets/img/logo.png" alt=""> -->
+            <h1>Ingenieurbüro Schmidt & Aljarad<span>.</span></h1>
+        </a>
+        <i id="i1" class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
+        <i id="i2" class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
+        <nav id="navbar" class="navbar">
+            <ul>
+                <li><a href="/" class="active">Home</a></li>
+                @if (Model.localization.active == true)
+                {
+                    <li><a href="#">über uns</a></li>
+                    <li><a href="#">Leistung</a></li>
+                    <li><a href="#">Kontakt</a></li>
+                }
+                else
+                {
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Service</a></li>
+                    
+                    <li><a href="#">Contact</a></li>
+                }
+                <li class="dropdown">
+                    <a href="#">
+                        <span>Language</span> <i class="bi bi-chevron-down dropdown-indicator"></i>
+                    </a>
+                    <ul id="menufilter">
+                        <form asp-action="Edit" asp-area="Admin" asp-controller="Localizations">
+                            <input asp-for="localization.active" type="checkbox" class="d-none" />
+                            <input asp-for="localization.Id" type="hidden" />
+                            @if (Model.localization.active == true)
+                            {
+                            <li style="cursor:pointer;">
+                                <input type="submit" value="en" class="w-75 btn btn-sm" /><img src="/img/Custom-Icon-Design-All-Country-Flag-United-States-Flag.256.png" width="20" />
+                            </li>
+                            }
+                            else
+                            {
+
+                            <li>
+                                <input type="submit" value="de" class="w-75 btn btn-sm" /><img src="/img/Custom-Icon-Design-All-Country-Flag-Germany-Flag.256.png   " width="20" />
+                            </li>
+                            }
+                        </form>
+
+                    </ul>
+                </li>
+            </ul>
+        </nav><!-- .navbar -->
+
+    </div>
+</header>
+
+
+<div style="padding-left: 13px;" class="pl-3 py-5 text-start">
+  @*  <img class="d-block mx-auto mb-4" src="~/img/Custom-Icon-Design-All-Country-Flag-United-States-Flag.256.png" alt="" width="72" height="72">*@
+ @foreach (var item in Model.GetIMPs)
+    {
+        <h2>@item.Title</h2>
+        <p class="lead">@item.Description</p>
+
+    }
+   
+</div>
+@section Scripts{
+        <script>
+            $(document).ready(function(){
+            $("#i1").click(
+                function(){
+                        $("#i2").removeClass("d-none");
+                        $("#i1").addClass("d-none");
+                        $("#bclic").addClass("mobile-nav-active");
+                }
+            );
+                $("#i2").click(
+                    function () {
+                        $("#i1").removeClass("d-none");
+                        $("#i2").addClass("d-none");
+                        $("#bclic").removeClass("mobile-nav-active");
+                    }
+                );
+            })
+        </script>
+}

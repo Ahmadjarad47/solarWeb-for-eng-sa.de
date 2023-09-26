@@ -1,0 +1,57 @@
+﻿@model Solares.Models.Email
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<partial name="/Views/Shared/Admin.cshtml" />
+<h1 style="z-index:1000;">Delete</h1>
+
+
+<h4 class="justify-content-center align-content-center d-flex">Service</h4>
+<div class="row justify-content-center align-content-center d-flex">
+    <div class="col-md-4">
+        <form asp-action="Delete">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input readonly disabled asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="email" class="control-label"></label>
+                <input readonly disabled asp-for="email" class="form-control" />
+                <span asp-validation-for="email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="subject" class="control-label"></label>
+                <input disabled readonly asp-for="subject" class="form-control" />
+                <span asp-validation-for="subject" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="body" class="control-label"></label>
+                <input readonly disabled asp-for="body" class="form-control" />
+                <span asp-validation-for="body" class="text-danger"></span>
+            </div>
+           
+            <div class="form-group pt-1">
+                <input type="submit" value="Delete" class="btn btn-primary w-100 " />
+
+            </div>
+            <div class="form-group pt-1">
+                <a class="btn btn-info w-100 " asp-action="Index">Back to List</a>
+            </div>
+        </form>
+    </div>
+</div>
+</div>
+        </main>
+
+    </div>
+</div>
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
