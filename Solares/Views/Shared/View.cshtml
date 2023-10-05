@@ -50,7 +50,7 @@
                                         s = item.DescriptionDe;
                                     }
                                 }
-                                @s
+                                @Html.Raw(@s)
                             </p>
                         }
                         else
@@ -70,7 +70,7 @@
                                             s = item.Description;
                                         }
                                     }
-                                    @s
+                                    @Html.Raw(@s)
                                 </p>
                             
                         }
@@ -99,7 +99,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-               @item.Description
+              <p class="lead">@Html.Raw(@item.Description)</p>
             </div>
                 }else
                 {
@@ -109,7 +109,7 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <p>@item.DescriptionDe</p>
+                        <p>@Html.Raw(@item.DescriptionDe)</p>
                     </div>
 
                 }

@@ -6,7 +6,7 @@ namespace Solares.Models
 {
     public class GetUsingLinq
     {
-        public static string connection= "Data Source=SQL5111.site4now.net;DataBase=db_a9f097_ahmad11;User Id=db_a9f097_ahmad11_admin;Password=Ahmad111";
+        public static string connection= "Server=(localdb)\\MSSQLLocalDB;Database=aspnet-Solares-af4442b3-e7a4-4b8d-976e-7412745a59cd;Trusted_Connection=True;MultipleActiveResultSets=true";
 
         DbContextOptions<ApplicationDbContext> op = new DbContextOptionsBuilder<ApplicationDbContext>().UseLazyLoadingProxies().UseSqlServer(connection).Options;
         ApplicationDbContext context;
@@ -14,9 +14,9 @@ namespace Solares.Models
         {
             this.context = new ApplicationDbContext(op);
         }
-        public  DbSet<Localization> Localizations()
+        public  DbSet<Cookie> cookie()
         {
-            return  context.Localization;
+            return  context.Cookie;
         }
 
     }

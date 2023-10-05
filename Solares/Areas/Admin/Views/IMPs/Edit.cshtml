@@ -21,7 +21,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="Description" class="control-label"></label>
-                <input asp-for="Description" class="form-control" />
+                <textarea asp-for="Description" class="form-control"></textarea>
                 <span asp-validation-for="Description" class="text-danger"></span>
             </div>
 
@@ -45,5 +45,15 @@
 @section Scripts {
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
-    }
+    } <script src="https://cdn.tiny.cloud/1/jhtha8jvhd1mlchxukhsevi5jwiq38zulmmeputcwr8v6xzy/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+    <script>
+        tinymce.init(
+
+            {
+                selector: 'textarea',
+                plugins: 'lists',
+                menubar: 'file edit format',
+            }
+        );
+    </script>
 }

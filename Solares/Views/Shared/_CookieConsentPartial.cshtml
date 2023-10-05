@@ -4,15 +4,19 @@
     var consentFeatureFlag = Context.Features.Get<ITrackingConsentFeature>();
     var showBannerFlag = !consentFeatureFlag?.CanTrack ?? false;
     var cookieStr = consentFeatureFlag?.CreateConsentCookie();
-   
+    Solares.Models.GetUsingLinq get = new();
+    var data = get.cookie();
 
 }
 
 @if (showBannerFlag)
 {
     <div id="cookieConsentdiv">
-        <h3 class="display-6">Cookie Policy</h3>
-        <p>PLEASE ACCEPT <a style="cursor:pointer;" asp-action="Datenschutz" asp-area="Customer" asp-controller="Datenschutz">COOKIE POLICY</a>.   </p>
+        @foreach (var item in data)
+        {
+        <h3 class="display-6">@item.Title</h3>
+       
+        <p>@item.Description <a style="cursor:pointer;" asp-action="Datenschutz" asp-area="Customer" asp-controller="Datenschutz">COOKIE POLICY</a>.   </p>
         <div class="d-flex">
         <button type="button" data-cookie-string="@cookieStr">
             <span aria-hidden="true">Accept</span>
@@ -20,7 +24,10 @@
         <button type="button" id="hides" class="btn btn-danger">
             Decline
         </button>
-    </div></div>
+        
+    </div>
+        }
+    </div>
     <script type="text/javascript">
 
         $(document).ready(function () {

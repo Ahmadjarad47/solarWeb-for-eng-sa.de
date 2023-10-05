@@ -28,5 +28,6 @@ namespace Solares.Data
         public virtual DbSet<OurServiceItem> OurServiceItem { get; set; }
         public virtual DbSet<Solares.Models.IMP> IMP { get; set; }
         public virtual DbSet<Solares.Models.DataShoot> DataShoot { get; set; }
+        public virtual DbSet<Solares.Models.Cookie> Cookie { get; set; }
     }
 }

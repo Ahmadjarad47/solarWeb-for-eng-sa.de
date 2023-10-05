@@ -14,19 +14,19 @@
         <i id="i2" class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
         <nav id="navbar" class="navbar">
             <ul>
-                <li><a href="/" class="active">Home</a></li>
+                <li><a href="/" class="">Home</a></li>
                 @if (Model.localization.active == true)
                 {
                     <li><a href="#">über uns</a></li>
                     <li><a href="#">Leistung</a></li>
-                    <li><a href="#">Kontakt</a></li>
+                    <li><a href="/#get-started">Kontakt</a></li>
                 }
                 else
                 {
                     <li><a href="#">About Us</a></li>
                     <li><a href="#">Service</a></li>
-                    
-                    <li><a href="#">Contact</a></li>
+
+                    <li><a href="/#get-started">Contact</a></li>
                 }
                 <li class="dropdown">
                     <a href="#">
@@ -61,11 +61,13 @@
 
 
 <div style="padding-left: 13px;" class="pl-3 py-5 text-start">
+    <br /><br />
+    <h2>Impressum</h2>
   @*  <img class="d-block mx-auto mb-4" src="~/img/Custom-Icon-Design-All-Country-Flag-United-States-Flag.256.png" alt="" width="72" height="72">*@
  @foreach (var item in Model.GetIMPs)
     {
         <h2>@item.Title</h2>
-        <p class="lead">@item.Description</p>
+        <p class="lead">@Html.Raw(@item.Description)</p>
 
     }
    

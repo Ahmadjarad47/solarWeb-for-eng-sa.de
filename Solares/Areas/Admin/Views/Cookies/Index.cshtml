@@ -1,0 +1,47 @@
+﻿@model IEnumerable<Solares.Models.Cookie>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<partial name="/Views/Shared/Admin.cshtml" />
+
+
+<h2 class="justify-content-center align-content-center d-flex">Index</h2>
+<p>
+    <a class="btn btn-primary" asp-action="Create">Create New</a>
+</p>
+<table class="table table-dark table-hover">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td style="width:150px;">
+                    <partial name="_CRUD" model="@item.Id">
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+  </div>
+        </main>
+
+    </div>
+</div>

@@ -12,6 +12,7 @@ using Solares.Models;
 namespace Solares.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize("OMAR$ADM�IN$Acc$sess")]
     public class LocalizationsController : Controller
     {
         private readonly ApplicationDbContext _context;
